@@ -1,0 +1,11 @@
+server:
+  port: 9001
+  tomcat:
+      connection-timeout: 2s # // The maximum time to wait for a connection from the pool
+      keep-alive-timeout: 15s # // The number of seconds to wait for an HTTP request to complete before closing the connection
+      threads:
+        max: 50
+        min-spare: 5 # // Always running and created  at startup
+
+
+
