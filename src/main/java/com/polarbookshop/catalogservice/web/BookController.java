@@ -11,12 +11,11 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("books")
 public class BookController {
+    private final BookService bookService;
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
-
-    private final BookService bookService;
 
     @GetMapping
     public Iterable<Book> get() {

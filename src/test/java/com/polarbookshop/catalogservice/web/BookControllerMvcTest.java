@@ -1,5 +1,6 @@
 package com.polarbookshop.catalogservice.web;
 
+import com.polarbookshop.catalogservice.domain.BookAlreadyExistsException;
 import com.polarbookshop.catalogservice.domain.BookNotFoundException;
 import com.polarbookshop.catalogservice.service.BookService;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,16 @@ class BookControllerMvcTest {
         mockMvc
                 .perform(get("/books/" + isbn))
                 .andExpect(status().isNotFound());
+    }
 
+    @Test
+    void whenGetBookExistsThenShouldReturn422() throws Exception {
+        String isbn = "73737313940";
 
+        given(bookService.viewBookDetails(isbn))
+                .willThrow(BookAlreadyExistsException.class);
+        mockMvc
+                .perform(get("/books/" + isbn))
+                .andExpect(status().isUnprocessableEntity());
     }
 }
