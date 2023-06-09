@@ -8,6 +8,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import java.time.Instant;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,7 +27,7 @@ class BookValidationTest {
     @Test
     void whenAllFieldsCorrectThenValidationSucceeds() {
         var book =
-                new Book("1234567890", "Title", "Author", 9.90);
+                new Book(null, "Morgan Frank","1234567890", "Title", "Author", 9.90, Instant.now(), Instant.now(), 0);
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).isEmpty();
     }
@@ -34,7 +35,7 @@ class BookValidationTest {
     @Test
     void whenIsbnDefinedButIncorrectThenValidationFails() {
         var book =
-                new Book("a234567890", "Title", "Author", 9.90);
+                new Book(null, "Morgan Frank","a234567890", "Title", "Author", 9.90, Instant.now(), Instant.now(), 0);
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).hasSize(1);
         assertThat(violations.iterator().next().getMessage())

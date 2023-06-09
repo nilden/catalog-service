@@ -3,15 +3,19 @@
 //@no-log
 GET http://localhost:9001/
 
+### management refresh properties
+//@no-log
+POST http://localhost:9001/actuator/refresh
+
 ### Add new Book
 //@no-log
 POST http://localhost:9001/books
 content-type: application/json
 
 {
-"author": "Kevin Schnider",
-"title": "Northern Lights",
-"isbn": "1234567891",
+"author": "Kevin Schnider 2",
+"title": "Northern Lights 2",
+"isbn": "1234567892",
 "price": "9.90"
 }
 
@@ -31,4 +35,4 @@ GET http://localhost:9001/books
 
 ### Delete Book
 //@no-log
-DELETE http://localhost:9001/books/1234567891
+DELETE http://localhost:9001/books/1234567892
