@@ -34,7 +34,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew build
-    package:
+  package:
       name: Package and Publish
       if: ${{ github.ref == 'refs/heads/main' }}
       needs: [ build ]
