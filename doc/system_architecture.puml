@@ -1,0 +1,31 @@
+@startuml
+allow_mixing
+
+rectangle "Polar Bookshop \n [Software system]" #line.dashed {
+    rectangle catalogService [
+        **Catalog Service**
+        [Container: "Spring Boot"]
+
+        Provides functionality for managing the books in the catalog
+    ]
+
+    rectangle configService [
+        **Config Service**
+        [Container: "Spring Boot"]
+
+        Provides centralized configuration
+    ]
+
+    database catalogDatabase [
+        **Catalog Database**
+        [Container: "PostgreSQL"]
+
+        Stores book data
+    ]
+}
+
+
+catalogService .right> configService: Gets configuration from\n [REST/HTTP]
+catalogService ..> catalogDatabase: Reads and writes book data from\n [JDC]
+
+@enduml
